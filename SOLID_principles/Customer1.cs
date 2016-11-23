@@ -8,24 +8,25 @@ namespace SOLID_principles
     //“O” - Open closed principle
     public class Customer1
     {
-        private int _CustType;
-
-        public int CustType
+        public virtual double getDiscount(double TotalSales)
         {
-            get { return _CustType; }
-            set { _CustType = value; }
+            return TotalSales;
         }
+    }
 
-        public double getDiscount(int TotalSales)
+    public class SilverCustomer : Customer1
+    {
+        public override double getDiscount(double TotalSales)
         {
-            if (_CustType == 1)
-            {
-                return TotalSales - 100;
-            }
-            else
-            {
-                return TotalSales - 50;
-            }
+            return base.getDiscount(TotalSales) - 50;
+        }
+    }
+
+    public class goldCustomer : Customer1
+    {
+        public override double getDiscount(double TotalSales)
+        {
+            return base.getDiscount(TotalSales) - 100;
         }
     }
 }
